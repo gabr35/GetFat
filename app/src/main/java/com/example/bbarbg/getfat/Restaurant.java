@@ -26,7 +26,7 @@ import java.util.Iterator;
 public class Restaurant extends AppCompatActivity {
     private String temp = "";
     private ProgressBar progressBar;
-    private static final String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
+    private static final String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAOpJAjEDLjxZIVm3nKk_8wtW3cW3gPujM&";
 
 
     @Override
@@ -48,18 +48,17 @@ public class Restaurant extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setX(184);
 
-        try {
-            getRestaurants(url);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
 
     }
 
-    public void getRestaurants(String url) throws JSONException{
-        JSONObject jsonObj = new JSONObject(url);
+    public void getRestaurants(String url) throws JSONException {
+        final ArrayAdapter<restaurant>
+        try {
 
-        //jsonObj.getString("temp");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
 
