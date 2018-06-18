@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
         setTitle("Auf was hast du Lust?");
 
-        Spinner dropdown = findViewById(R.id.radius);
-        String[] items = new String[]{"Hier", "~300m entfernt", "Kanton"};
+        final Spinner dropdown = findViewById(R.id.radius);
+        String[] items = new String[]{"Hier", "~2km entfernt", "~10km entfernt"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
          //button
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(checkedFood.toString());
                 Intent intent = new Intent(getApplicationContext(), Restaurant.class);
                 intent.putStringArrayListExtra("checkedFood", (ArrayList<String>) checkedFood);
+                intent.putExtra("radius", dropdown.getSelectedItem().toString());
                 startActivity(intent);
             }
         });
