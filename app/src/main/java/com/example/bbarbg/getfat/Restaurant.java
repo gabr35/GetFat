@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
@@ -75,14 +77,30 @@ public class Restaurant extends AppCompatActivity {
         System.out.println("chekced " + checkedFood.toString());
 
 
-        progressBar = findViewById(R.id.loading_restaurants_progress);
-        progressBar.setVisibility(View.VISIBLE);
-        progressBar.setX(184);
+
 
         for (String food : checkedFood) {
             try {
                 getRestaurants(url, food);
                 restaurantList.setAdapter(restaurantAdapter);
+
+                AdapterView.OnItemClickListener mListClickedHandler = new
+                        AdapterView.OnItemClickListener() {
+                            public void onItemClick(AdapterView parent, View v, int position, long id){
+                                Intent intent = new Intent(getApplicationContext(), Einzelansicht_Restaurant.class);
+                                restaurant selected = (restaurant) parent.getItemAtPosition(position);
+                                intent.putExtra("r_name", selected.getName());
+                                intent.putExtra("r_type", selected.getType());
+                                intent.putExtra("r_x", selected.getX());
+                                intent.putExtra("r_y", selected.getY());
+                                intent.putExtra("r_opennow", selected.isOpennow());
+                                startActivity(intent);
+                            }
+                        };
+                restaurantList.setOnItemClickListener(mListClickedHandler);
+
+
+
                 progressBar.setVisibility(View.GONE);
             } catch (JSONException e) {
 
@@ -113,9 +131,8 @@ public class Restaurant extends AppCompatActivity {
                 System.out.println("onErrorResponse " + error.getMessage());
             }
         }); queue.add(stringRequest);
-
-
-
-
     }
+
+
+
 }

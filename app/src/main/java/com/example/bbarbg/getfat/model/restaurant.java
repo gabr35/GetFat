@@ -1,6 +1,9 @@
 package com.example.bbarbg.getfat.model;
 
 public class restaurant {
+
+
+
     String name;
     String type;
     double x;
@@ -9,6 +12,7 @@ public class restaurant {
     String foto;
 
     public restaurant(String name, String type, double x, double y, boolean opennow, String foto) {
+
         this.name = name;
         this.type = type;
         this.x = x;
@@ -19,6 +23,7 @@ public class restaurant {
     public restaurant(){
 
     }
+
 
     public String getName() {
         return name;
