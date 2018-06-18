@@ -17,6 +17,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/burger"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radius"
+        app:srcCompat="@drawable/ic_hamburger" />
+
+    <ImageView
+        android:id="@+id/doner"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pizza"
+        app:srcCompat="@drawable/ic_donerkebab" />
+
+    <ImageView
+        android:id="@+id/pizza"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/burger"
+        app:srcCompat="@drawable/ic_pizza" />
+
+    <ImageView
+        android:id="@+id/sandwich"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/asia"
+        app:srcCompat="@drawable/ic_sandwich" />
+
+    <ImageView
+        android:id="@+id/asia"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/doner"
+        app:srcCompat="@drawable/ic_asia" />
+
     <LinearLayout
         android:id="@+id/food"
         android:layout_width="match_parent"
@@ -33,8 +79,8 @@
             android:id="@+id/cb_burger"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Burger"
             android:onClick="onCheckboxClicked"
+            android:text="Burger"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.06"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,8 +90,8 @@
             android:id="@+id/cb_pizza"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pizza"
             android:onClick="onCheckboxClicked"
+            android:text="Pizza"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.059"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +101,8 @@
             android:id="@+id/cb_doener"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Döner"
             android:onClick="onCheckboxClicked"
+            android:text="Döner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.06"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +112,8 @@
             android:id="@+id/cb_asian"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Asian"
             android:onClick="onCheckboxClicked"
+            android:text="Asian"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.059"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,12 +123,13 @@
             android:id="@+id/cb_sandwich"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sandwich"
             android:onClick="onCheckboxClicked"
+            android:text="Sandwich"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.065"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cb_pizza" />
+
     </LinearLayout>
 
     <Button
@@ -96,4 +143,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

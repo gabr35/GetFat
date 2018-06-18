@@ -16,6 +16,9 @@ public class restaurant {
         this.opennow = opennow;
         this.foto = foto;
     }
+    public restaurant(){
+
+    }
 
     public String getName() {
         return name;
