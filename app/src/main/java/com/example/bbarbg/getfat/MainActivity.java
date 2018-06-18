@@ -8,11 +8,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.System.in;
 
 public class MainActivity extends AppCompatActivity {
-    String temp = "";
+    private List<String> checkedFood = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,14 +29,23 @@ public class MainActivity extends AppCompatActivity {
         String[] items = new String[]{"Hier", "~300m entfernt", "Kanton"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
-
+         //button
+        final Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println(checkedFood.toString());
+                Intent intent = new Intent(getApplicationContext(), Restaurant.class);
+                intent.putStringArrayListExtra("checkedFood", (ArrayList<String>) checkedFood);
+                startActivity(intent);
+            }
+        });
 
     }
 
 
-    public void suchen(View v){
+    public void onCheckboxClicked(View v){
 
-        Intent intent = new Intent(getApplicationContext(), Restaurant.class);
+        //Intent intent = new Intent(getApplicationContext(), Restaurant.class);
 
         boolean checked = ((CheckBox) v).isChecked();
 
@@ -40,36 +53,44 @@ public class MainActivity extends AppCompatActivity {
        switch(v.getId()) {
             case R.id.cb_burger:
                 if (checked){
-                    intent.putExtra("burger", "burger");
-                    temp += "burger";
+                    //intent.putExtra("burger", "burger");
+                    checkedFood.add("burger");
+                }  else {
+                    checkedFood.remove("burger");
                 }
+                break;
             case R.id.cb_asian:
                 if (checked){
-                    intent.putExtra("asian", "asian");
+                    //intent.putExtra("asian", "asian");
+                    checkedFood.add("asian");
+                } else {
+                    checkedFood.remove("asian");
                 }
+                break;
             case R.id.cb_doener:
                 if (checked){
-                    intent.putExtra("doener", "doener");
+                    //intent.putExtra("doener", "doener");
+                    checkedFood.add("doener");
+                } else {
+                    checkedFood.remove("doener");
                 }
+                break;
             case R.id.cb_pizza:
                 if (checked){
-                    intent.putExtra("pizza", "pizza");
-                    temp += "pizza";
+                    //intent.putExtra("pizza", "pizza");
+                    checkedFood.add("pizza");
+                }  else {
+                    checkedFood.remove("pizza");
                 }
+                break;
             case R.id.cb_sandwich:
                 if (checked){
-                    intent.putExtra("sandwich", "sandwich");
+                    //intent.putExtra("sandwich", "sandwich");
+                    checkedFood.add("sandwich");
+                }  else {
+                    checkedFood.remove("sandwich");
                 }
-
+                break;
         }
-        this.setTitle(temp);
-
-
-
-
-
-        //startActivity(intent);
-
     }
-
 }

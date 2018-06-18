@@ -20,6 +20,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Restaurant extends AppCompatActivity {
@@ -39,7 +40,8 @@ public class Restaurant extends AppCompatActivity {
 
         setTitle("Gefundene Restaurants");
         Intent intent = getIntent();
-        String name = intent.getStringExtra("burger");
+        ArrayList<String> checkedFood = intent.getStringArrayListExtra("checkedFood");
+        System.out.println("chekced " + checkedFood.toString());
 
 
         progressBar = findViewById(R.id.loading_restaurants_progress);
