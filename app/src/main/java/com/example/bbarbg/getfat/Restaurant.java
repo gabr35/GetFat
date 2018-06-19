@@ -109,6 +109,8 @@ public class Restaurant extends AppCompatActivity {
                                 intent.putExtra("r_x", selected.getX());
                                 intent.putExtra("r_y", selected.getY());
                                 intent.putExtra("r_opennow", selected.isOpennow());
+                                intent.putExtra("r_rating", selected.getRating());
+                                intent.putExtra("r_adresse", selected.getAdresse());
                                 startActivity(intent);
                             }
                         };

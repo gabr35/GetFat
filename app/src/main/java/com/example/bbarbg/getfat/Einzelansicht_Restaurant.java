@@ -2,12 +2,14 @@ package com.example.bbarbg.getfat;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.Rating;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,15 @@ import com.example.bbarbg.getfat.model.restaurant;
 import java.util.ArrayList;
 
 public class Einzelansicht_Restaurant extends AppCompatActivity {
+
+    private String name;
+    private String type;
+    private String adresse;
+    private float rating;
+    private double x;
+    private double y;
+    private boolean openNow;
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -33,21 +44,38 @@ public class Einzelansicht_Restaurant extends AppCompatActivity {
         setContentView(R.layout.activity_einzelansicht__restaurant);
 
         Intent intent = getIntent();
-        final String name = intent.getStringExtra("r_name");
-        String type = intent.getStringExtra("r_type");
-        final Double x = intent.getDoubleExtra("r_x",0);
-        final Double y = intent.getDoubleExtra("r_y",0);
-        Boolean opennow = intent.getBooleanExtra("r_opennow",false);
+        this.name = intent.getStringExtra("r_name");
+        this.type = intent.getStringExtra("r_type");
+        this.x = intent.getDoubleExtra("r_x",0);
+        this.y = intent.getDoubleExtra("r_y",0);
+        this.openNow = intent.getBooleanExtra("r_opennow",false);
+        this.adresse = intent.getStringExtra("r_adresse");
+        this.rating = intent.getFloatExtra("r_adresse", 0);
+
+        final TextView viewName = (TextView)findViewById(R.id.r_name);
+        TextView adresse = (TextView)findViewById(R.id.r_adresse);
+        TextView status = (TextView)findViewById(R.id.r_status);
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+
+        viewName.setText(this.name);
+        adresse.setText(this.adresse);
+        status.setText("Heute geöffnet");
+        if (!openNow) {
+            status.setText("Heute geschlossen");
+        }
+        ratingBar.setMax(5);
+        ratingBar.setRating(this.rating);
+
+
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        setTitle(name);
+        setTitle(this.name);
 
-        //final TextView text = (TextView) findViewById(R.id.textViewName);
-        //text.setText();
+
 
         setImage(type);
 

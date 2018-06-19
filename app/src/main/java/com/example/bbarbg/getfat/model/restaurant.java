@@ -49,6 +49,14 @@ public class restaurant {
         return x;
     }
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
     public void setX(double x) {
         this.x = x;
     }
