@@ -8,6 +8,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -46,19 +47,33 @@ public class Restaurant extends AppCompatActivity {
     private int radius;
     private String location = "46.939667,7.398639";
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
 
-        this.restaurantList = (ListView) findViewById(R.id.restaurants);
-        this.restaurantAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
-
-
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         progressBar = (ProgressBar) findViewById(R.id.loading_restaurants_progress);
         progressBar.setVisibility(View.VISIBLE);
-        progressBar.setX(184);
+
+        this.restaurantList = (ListView) findViewById(R.id.restaurants);
+        this.restaurantAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
+
 
         setTitle("Gefundene Restaurants");
         Intent intent = getIntent();
@@ -79,7 +94,7 @@ public class Restaurant extends AppCompatActivity {
 
 
 
-        for (String food : checkedFood) {
+            for (String food : checkedFood) {
             try {
                 getRestaurants(url, food);
                 restaurantList.setAdapter(restaurantAdapter);
@@ -110,6 +125,7 @@ public class Restaurant extends AppCompatActivity {
 
 
     }
+
 
     public void getRestaurants(String url, final String type) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
