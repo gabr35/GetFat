@@ -50,7 +50,7 @@ public class Einzelansicht_Restaurant extends AppCompatActivity {
         this.y = intent.getDoubleExtra("r_y",0);
         this.openNow = intent.getBooleanExtra("r_opennow",false);
         this.adresse = intent.getStringExtra("r_adresse");
-        this.rating = intent.getFloatExtra("r_adresse", 0);
+        this.rating = intent.getFloatExtra("r_rating", 0);
 
         final TextView viewName = (TextView)findViewById(R.id.r_name);
         TextView adresse = (TextView)findViewById(R.id.r_adresse);
