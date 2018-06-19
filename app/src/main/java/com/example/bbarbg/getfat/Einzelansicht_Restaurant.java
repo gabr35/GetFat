@@ -29,9 +29,12 @@ public class Einzelansicht_Restaurant extends AppCompatActivity {
         final Double y = intent.getDoubleExtra("r_y",0);
         Boolean opennow = intent.getBooleanExtra("r_opennow",false);
 
+        setTitle(name);
 
-        final TextView text = (TextView) findViewById(R.id.textView);
-        text.setText("Name = " + name + "\nTyp = " + type +  "\nX = " + x  +  "\nY = " + y  +  "\nOpennow = " + opennow);
+
+        final TextView text = (TextView) findViewById(R.id.textViewName);
+        text.setText();
+
         setImage(type);
 
         //button
