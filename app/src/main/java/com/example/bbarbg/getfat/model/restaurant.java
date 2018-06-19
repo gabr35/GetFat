@@ -10,8 +10,10 @@ public class restaurant {
     double y;
     boolean opennow;
     String foto;
+    String adresse;
+    double rating;
 
-    public restaurant(String name, String type, double x, double y, boolean opennow, String foto) {
+    public restaurant(String name, String type, double x, double y, boolean opennow, String foto, String adresse, double rating) {
 
         this.name = name;
         this.type = type;
@@ -19,6 +21,8 @@ public class restaurant {
         this.y = y;
         this.opennow = opennow;
         this.foto = foto;
+        this.adresse = adresse;
+        this.rating = rating;
     }
     public restaurant(){
 

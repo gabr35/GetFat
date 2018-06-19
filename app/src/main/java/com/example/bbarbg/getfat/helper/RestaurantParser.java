@@ -25,6 +25,8 @@ public class RestaurantParser {
             String name = results.getJSONObject(i).getString("name");
             double x = results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lat");
             double y = results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lng");
+            String adresse = results.getJSONObject(i).getString("vicinity");
+            double rating = results.getJSONObject(i).getDouble("rating");
             boolean isOpen = false;
             if(results.getJSONObject(i).has("opening_hours")) {
                 isOpen = results.getJSONObject(i).getJSONObject("opening_hours").getBoolean("open_now");
@@ -34,7 +36,7 @@ public class RestaurantParser {
                 foto = "https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyAOpJAjEDLjxZIVm3nKk_8wtW3cW3gPujM&photoreference=" +
                         results.getJSONObject(i).getJSONArray("photos").getJSONObject(0).getString("photo_reference");
             }
-            restaurant restaurant = new restaurant(name, type, x, y, isOpen, foto);
+            restaurant restaurant = new restaurant(name, type, x, y, isOpen, foto, adresse, rating);
             restaurants.add(restaurant);
         }
         return restaurants;
