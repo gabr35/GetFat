@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Auf was hast du Lust?");
 
         final Spinner dropdown = (Spinner) findViewById(R.id.radius);
-        String[] items = new String[]{"Hier", "~2km entfernt", "~10km entfernt"};
+        String[] items = new String[]{"Hier", "2km entfernt", "10km entfernt"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
 
