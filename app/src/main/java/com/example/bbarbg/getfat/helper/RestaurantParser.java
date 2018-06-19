@@ -25,7 +25,10 @@ public class RestaurantParser {
             String name = results.getJSONObject(i).getString("name");
             double x = results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lat");
             double y = results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lng");
-            boolean isOpen = results.getJSONObject(i).getJSONObject("opening_hours").getBoolean("open_now");
+            boolean isOpen = false;
+            if(results.getJSONObject(i).has("opening_hours")) {
+                isOpen = results.getJSONObject(i).getJSONObject("opening_hours").getBoolean("open_now");
+            }
             String foto = "";
             if(results.getJSONObject(i).has("photos")) {
                 foto = "https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyAOpJAjEDLjxZIVm3nKk_8wtW3cW3gPujM&photoreference=" +
