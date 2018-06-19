@@ -67,11 +67,11 @@ public class Restaurant extends AppCompatActivity {
             case "Hier":
                 radius = 500;
                 break;
-            case "~2km entfernt":
+            case "2km entfernt":
                 radius = 2000;
                 break;
-            case "~10km entfernt":
-                radius = 100000;
+            case "10km entfernt":
+                radius = 10000;
                 break;
         }
         System.out.println("chekced " + checkedFood.toString());
