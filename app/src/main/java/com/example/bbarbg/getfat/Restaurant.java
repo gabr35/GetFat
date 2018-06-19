@@ -51,12 +51,12 @@ public class Restaurant extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
 
-        this.restaurantList = findViewById(R.id.restaurants);
+        this.restaurantList = (ListView) findViewById(R.id.restaurants);
         this.restaurantAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
 
 
 
-        progressBar = findViewById(R.id.loading_restaurants_progress);
+        progressBar = (ProgressBar) findViewById(R.id.loading_restaurants_progress);
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setX(184);
 

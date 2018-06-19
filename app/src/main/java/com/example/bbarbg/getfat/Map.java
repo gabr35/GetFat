@@ -1,5 +1,6 @@
 package com.example.bbarbg.getfat;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -17,6 +18,9 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private final int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
+    private double lat;
+    private double lng;
+    private String restaurantName;
 
 
     @Override
@@ -27,6 +31,12 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+        Intent intent = getIntent();
+        lat = intent.getDoubleExtra("lat", 0);
+        lng = intent.getDoubleExtra("lng", 0);
+        restaurantName = intent.getStringExtra("name");
 
 
     }
@@ -74,8 +84,8 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         mMap.setMyLocationEnabled(true);
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng sydney = new LatLng(lat, lng);
+        mMap.addMarker(new MarkerOptions().position(sydney).title(restaurantName));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 20));
     }
 }

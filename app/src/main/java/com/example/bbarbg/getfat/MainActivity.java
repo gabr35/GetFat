@@ -37,19 +37,19 @@ public class MainActivity extends AppCompatActivity {
 
         setTitle("Auf was hast du Lust?");
 
-        final Spinner dropdown = findViewById(R.id.radius);
+        final Spinner dropdown = (Spinner) findViewById(R.id.radius);
         String[] items = new String[]{"Hier", "~2km entfernt", "~10km entfernt"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
 
-        this.pizza = findViewById(R.id.cb_pizza);
-        this.burger = findViewById(R.id.cb_burger);
-        this.doener = findViewById(R.id.cb_doener);
-        this.sandwich = findViewById(R.id.cb_sandwich);
-        this.asian = findViewById(R.id.cb_asian);
+        this.pizza = (CheckBox) findViewById(R.id.cb_pizza);
+        this.burger = (CheckBox) findViewById(R.id.cb_burger);
+        this.doener = (CheckBox) findViewById(R.id.cb_doener);
+        this.sandwich = (CheckBox) findViewById(R.id.cb_sandwich);
+        this.asian = (CheckBox) findViewById(R.id.cb_asian);
 
          //button
-        final Button button = findViewById(R.id.button);
+        final Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
