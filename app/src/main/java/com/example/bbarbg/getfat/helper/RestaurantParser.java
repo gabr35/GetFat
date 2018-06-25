@@ -1,22 +1,18 @@
 package com.example.bbarbg.getfat.helper;
 
-import android.util.Log;
-
-import com.example.bbarbg.getfat.Restaurant;
-import com.example.bbarbg.getfat.model.restaurant;
+import com.example.bbarbg.getfat.model.Restaurant;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class RestaurantParser {
 
-    public static List<restaurant> craeteRestaurantFromJsonToString(String jsonString, String type) throws JSONException {
-        List<restaurant> restaurants = new ArrayList<>();
+    public static List<Restaurant> craeteRestaurantFromJsonToString(String jsonString, String type) throws JSONException {
+        List<Restaurant> restaurants = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(jsonString);
         System.out.println("jsonString " + jsonString);
         JSONArray results = jsonObject.getJSONArray("results");
@@ -26,7 +22,10 @@ public class RestaurantParser {
             double x = results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lat");
             double y = results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lng");
             String adresse = results.getJSONObject(i).getString("vicinity");
-            double rating = results.getJSONObject(i).getDouble("rating");
+            double rating = 0.00005;
+            if (results.getJSONObject(i).has("rating")) {
+                rating = results.getJSONObject(i).getDouble("rating");
+            }
             boolean isOpen = false;
             if(results.getJSONObject(i).has("opening_hours")) {
                 isOpen = results.getJSONObject(i).getJSONObject("opening_hours").getBoolean("open_now");
@@ -36,7 +35,7 @@ public class RestaurantParser {
                 foto = "https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyAOpJAjEDLjxZIVm3nKk_8wtW3cW3gPujM&photoreference=" +
                         results.getJSONObject(i).getJSONArray("photos").getJSONObject(0).getString("photo_reference");
             }
-            restaurant restaurant = new restaurant(name, type, x, y, isOpen, foto, adresse, rating);
+            Restaurant restaurant = new Restaurant(name, type, x, y, isOpen, foto, adresse, rating);
             restaurants.add(restaurant);
         }
         return restaurants;

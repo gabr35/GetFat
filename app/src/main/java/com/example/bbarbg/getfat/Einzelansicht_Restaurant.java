@@ -1,8 +1,6 @@
 package com.example.bbarbg.getfat;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.media.Rating;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,13 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.bbarbg.getfat.model.restaurant;
-
-import java.util.ArrayList;
 
 public class Einzelansicht_Restaurant extends AppCompatActivity {
 
@@ -64,6 +56,9 @@ public class Einzelansicht_Restaurant extends AppCompatActivity {
             status.setText("Heute geschlossen");
         }
         ratingBar.setMax(5);
+        if (rating == 0.00005) {
+            ratingBar.setVisibility(View.GONE);
+        }
         ratingBar.setRating(this.rating);
 
 
