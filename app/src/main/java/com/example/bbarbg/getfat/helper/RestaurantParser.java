@@ -12,16 +12,22 @@ import java.util.List;
 public class RestaurantParser {
 
     public static List<Restaurant> craeteRestaurantFromJsonToString(String jsonString, String type) throws JSONException {
+
         List<Restaurant> restaurants = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(jsonString);
         System.out.println("jsonString " + jsonString);
+        //results = Restaurants
         JSONArray results = jsonObject.getJSONArray("results");
         System.out.println("jsonString sub resuluts " + results.toString());
+
+        //Loog durch Restaurants
         for (int i = 0; i < results.length(); i++) {
+
             String name = results.getJSONObject(i).getString("name");
             double x = results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lat");
             double y = results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lng");
             String adresse = results.getJSONObject(i).getString("vicinity");
+            //Wenn keine raitng vorhanden ist
             double rating = 0.00005;
             if (results.getJSONObject(i).has("rating")) {
                 rating = results.getJSONObject(i).getDouble("rating");
@@ -35,6 +41,7 @@ public class RestaurantParser {
                 foto = "https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyAOpJAjEDLjxZIVm3nKk_8wtW3cW3gPujM&photoreference=" +
                         results.getJSONObject(i).getJSONArray("photos").getJSONObject(0).getString("photo_reference");
             }
+            //Restaurant Objekt erstellen
             Restaurant restaurant = new Restaurant(name, type, x, y, isOpen, foto, adresse, rating);
             restaurants.add(restaurant);
         }

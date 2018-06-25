@@ -2,16 +2,14 @@ package com.example.bbarbg.getfat.model;
 
 public class Restaurant {
 
-
-
-    String name;
-    String type;
-    double x;
-    double y;
-    boolean opennow;
-    String foto;
-    String adresse;
-    double rating;
+    private String name;
+    private String type;
+    private double x;
+    private double y;
+    private boolean opennow;
+    private String foto;
+    private String adresse;
+    private double rating;
 
     public Restaurant(String name, String type, double x, double y, boolean opennow, String foto, String adresse, double rating) {
 
@@ -24,6 +22,8 @@ public class Restaurant {
         this.adresse = adresse;
         this.rating = rating;
     }
+
+
     public Restaurant(){
 
     }

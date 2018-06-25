@@ -32,13 +32,10 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
         Intent intent = getIntent();
         lat = intent.getDoubleExtra("lat", 0);
         lng = intent.getDoubleExtra("lng", 0);
         restaurantName = intent.getStringExtra("name");
-
-
     }
 
     @Override
@@ -57,9 +54,6 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
                 }
                 return;
             }
-
-            // other 'case' lines to check for other
-            // permissions this app might request.
         }
     }
 
@@ -73,10 +67,10 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
         }
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker on map
         mMap.setMyLocationEnabled(true);
-        LatLng sydney = new LatLng(lat, lng);
-        mMap.addMarker(new MarkerOptions().position(sydney).title(restaurantName));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 20));
+        LatLng restaurantLocation = new LatLng(lat, lng);
+        mMap.addMarker(new MarkerOptions().position(restaurantLocation).title(restaurantName));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restaurantLocation, 20));
     }
 }

@@ -50,6 +50,7 @@ public class Restaurant extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +65,6 @@ public class Restaurant extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
 
         this.restaurantList = (ListView) findViewById(R.id.restaurants);
-        //this.restaurantAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
 
 
         setTitle("Gefundene Restaurants");
@@ -94,32 +94,14 @@ public class Restaurant extends AppCompatActivity {
         for (String food : checkedFood) {
             try {
                 getRestaurants(url, food);
+                //request counter
                 counter++;
-                /*List<String> restaurantNames = new ArrayList<>();
-                List<Boolean> isOpen = new ArrayList<>();
-                List<String> types = new ArrayList<>();*/
-                /*for (com.example.bbarbg.getfat.model.Restaurant Restaurant : Restaurants) {
-                    restaurantNames.add(Restaurant.getName());
-                    isOpen.add(Restaurant.isOpennow());
-                    types.add(Restaurant.getType());
-                }
-                String[] namesArr = (String[]) restaurantNames.toArray();
-                Boolean[] isOpenArr = (Boolean[]) isOpen.toArray();
-                String[] typesArr = (String[]) types.toArray();*/
-
-
-
-
-
             } catch (JSONException e) {
 
             }
         }
         System.out.println("restaurant nach for: " + restaurants.toString());
-
-        //restaurantAdapter.addAll(Restaurants);
         restaurantList.setAdapter(restaurantAdapter);
-
         AdapterView.OnItemClickListener mListClickedHandler = new
                 AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView parent, View v, int position, long id){
@@ -136,13 +118,7 @@ public class Restaurant extends AppCompatActivity {
                     }
                 };
         restaurantList.setOnItemClickListener(mListClickedHandler);
-
-
-
-
-
     }
-
 
     public void getRestaurants(String url, final String type) throws JSONException {
         url += "location=" + String.valueOf(lat) + "," + String.valueOf(longitude) + "&radius=" + radius + "&type=Restaurant&keyword=" + type;
@@ -153,7 +129,6 @@ public class Restaurant extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     restaurants.addAll(RestaurantParser.craeteRestaurantFromJsonToString(response, type));
-//                    restaurantAdapter.addAll(restaurants);
                     restaurantAdapter.notifyDataSetChanged();
                     System.out.println("restaurants2: " + restaurants.toString());
                     if (counter > 1) {

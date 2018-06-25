@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox sandwich;
     private CheckBox asian;
     private CheckBox doener;
-    //private String location = "46.939667,7.398639";
     private Location uLocation;
     private FusedLocationProviderClient mFusedLocationClient;
     private final int MY_PERMISSION_ACCESS_COURSE_LOCATION = 1;
@@ -53,13 +52,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        //User location
+        //User location permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             this.requestPermissions(new String[] { Manifest.permission.ACCESS_COARSE_LOCATION },
                     MY_PERMISSION_ACCESS_COURSE_LOCATION);
         }
 
+        //get User location
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mFusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -76,10 +76,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
-
         setTitle("Auf was hast du Lust?");
 
+        //Dropdown
         final Spinner dropdown = (Spinner) findViewById(R.id.radius);
         String[] items = new String[]{"Hier", "2km entfernt", "10km entfernt"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
@@ -109,20 +108,15 @@ public class MainActivity extends AppCompatActivity {
                     Toast errorToast = Toast.makeText(MainActivity.this, "Bitte eine Food-Kategorie auswählen!", Toast.LENGTH_SHORT);
                     errorToast.show();
                 }
-
             }
         });
     }
 
-
     public void onCheckboxClicked(View v){
-
-        //Intent intent = new Intent(getApplicationContext(), Restaurant.class);
 
         boolean checked = ((CheckBox) v).isChecked();
 
-
-       switch(v.getId()) {
+           switch(v.getId()) {
             case R.id.cb_burger:
                 if (checked){
                     //intent.putExtra("burger", "burger");
@@ -161,9 +155,8 @@ public class MainActivity extends AppCompatActivity {
                     checkedFood.add("sandwich");
                 }  else {
                     checkedFood.remove("sandwich");
-                }
-                break;
-        }
+                }break;
+            }
     }
 
     @Override
@@ -181,9 +174,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return;
             }
-
-            // other 'case' lines to check for other
-            // permissions this app might request.
         }
     }
 }

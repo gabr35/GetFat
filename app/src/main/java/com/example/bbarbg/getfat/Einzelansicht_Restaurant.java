@@ -69,9 +69,6 @@ public class Einzelansicht_Restaurant extends AppCompatActivity {
         }
 
         setTitle(this.name);
-
-
-
         setImage(type);
 
         //button
@@ -112,8 +109,6 @@ public class Einzelansicht_Restaurant extends AppCompatActivity {
             case "asian":
                 imageView.setImageDrawable(getResources().getDrawable(R.drawable.i_asia));
                 break;
-
         }
-
     }
 }
