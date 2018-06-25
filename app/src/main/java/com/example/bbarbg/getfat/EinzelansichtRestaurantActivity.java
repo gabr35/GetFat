@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-public class Einzelansicht_Restaurant extends AppCompatActivity {
+public class EinzelansichtRestaurantActivity extends AppCompatActivity {
 
     private String name;
     private String type;
@@ -76,7 +76,7 @@ public class Einzelansicht_Restaurant extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), Map.class);
+                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
                 intent.putExtra("lat", x);
                 intent.putExtra("lng", y);
                 intent.putExtra("name", name);

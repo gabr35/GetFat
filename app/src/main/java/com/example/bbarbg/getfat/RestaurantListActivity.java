@@ -24,7 +24,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Restaurant extends AppCompatActivity {
+public class RestaurantListActivity extends AppCompatActivity {
     private String temp = "";
     private ProgressBar progressBar;
     private static final String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAOpJAjEDLjxZIVm3nKk_8wtW3cW3gPujM&";
@@ -105,7 +105,7 @@ public class Restaurant extends AppCompatActivity {
         AdapterView.OnItemClickListener mListClickedHandler = new
                 AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView parent, View v, int position, long id){
-                        Intent intent = new Intent(getApplicationContext(), Einzelansicht_Restaurant.class);
+                        Intent intent = new Intent(getApplicationContext(), EinzelansichtRestaurantActivity.class);
                         com.example.bbarbg.getfat.model.Restaurant selected = (com.example.bbarbg.getfat.model.Restaurant) parent.getItemAtPosition(position);
                         intent.putExtra("r_name", selected.getName());
                         intent.putExtra("r_type", selected.getType());
@@ -121,7 +121,7 @@ public class Restaurant extends AppCompatActivity {
     }
 
     public void getRestaurants(String url, final String type) throws JSONException {
-        url += "location=" + String.valueOf(lat) + "," + String.valueOf(longitude) + "&radius=" + radius + "&type=Restaurant&keyword=" + type;
+        url += "location=" + String.valueOf(lat) + "," + String.valueOf(longitude) + "&radius=" + radius + "&type=RestaurantListActivity&keyword=" + type;
 
         System.out.println("url " + url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -136,7 +136,7 @@ public class Restaurant extends AppCompatActivity {
                     } else {
                         progressBar.setVisibility(View.GONE);
                         if (restaurants.size() == 0) {
-                            Toast errorToast = Toast.makeText(Restaurant.this, "Keine Restaurants gefunden :(", Toast.LENGTH_LONG);
+                            Toast errorToast = Toast.makeText(RestaurantListActivity.this, "Keine Restaurants gefunden :(", Toast.LENGTH_LONG);
                             errorToast.show();
                         }
                     }

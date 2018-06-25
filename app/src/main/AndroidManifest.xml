@@ -24,8 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Restaurant" />
-        <activity android:name=".Einzelansicht_Restaurant" />
+        <activity android:name=".RestaurantListActivity" />
+        <activity android:name=".EinzelansichtRestaurantActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -52,7 +52,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".Map"
+            android:name=".MapActivity"
             android:label="@string/title_activity_map"></activity>
     </application>
 
